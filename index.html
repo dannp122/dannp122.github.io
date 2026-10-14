@@ -1,0 +1,274 @@
+<title>Nguyễn Phương Đan Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a bank-statement sheet. Narrow reading column, ruled rows, tabular figures; one interactive credit-quality demo in the middle. */
+:root{
+  --bg:#f5f7f4; --surface:#ffffff; --fg:#16201b; --muted:#5a6760; --line:#d6dcd7;
+  --accent:#0b6e5b; --accent-soft:#dcefe9; --warn:#b4560f; --c1:#0b6e5b; --c2:#2a6fb0; --c3:#b4560f; --c4:#7a5aa6;
+  --display:'Schibsted Grotesk','Segoe UI',system-ui,sans-serif;
+  --body:'Source Sans 3','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1512; --surface:#141d19; --fg:#e5ece8; --muted:#9aa9a1; --line:#27352e;
+  --accent:#4cc3a5; --accent-soft:#17332c; --warn:#e58b4a; --c1:#4cc3a5; --c2:#6aa8e6; --c3:#e58b4a; --c4:#b79be0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1512; --surface:#141d19; --fg:#e5ece8; --muted:#9aa9a1; --line:#27352e;
+  --accent:#4cc3a5; --accent-soft:#17332c; --warn:#e58b4a; --c1:#4cc3a5; --c2:#6aa8e6; --c3:#e58b4a; --c4:#b79be0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--body);padding-block:0}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+html[data-l="vi"] .en,html[data-l="en"] .vi{display:none!important}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted);letter-spacing:.04em;text-transform:uppercase;border-bottom:2px solid var(--fg);padding-bottom:10px}
+.lang{display:flex;gap:4px}
+.lang button{font:500 12px var(--mono);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:4px 10px;border-radius:4px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.status{display:inline-flex;align-items:center;gap:8px}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+h1{font:800 clamp(34px,7vw,56px)/1.04 var(--display);letter-spacing:-.02em;margin:34px 0 10px;text-wrap:balance}
+.role{font:500 clamp(17px,2.6vw,21px)/1.4 var(--display);color:var(--accent);margin:0 0 18px}
+.lead{font-size:19px;max-width:62ch;margin:0 0 20px}
+.contact{display:flex;flex-wrap:wrap;gap:8px 22px;font:500 14px var(--mono);padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.contact span{color:var(--muted)}
+h2{font:700 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:54px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font:700 20px/1.25 var(--display);margin:0 0 6px;text-wrap:balance}
+p{margin:0 0 12px}
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.area{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+.area p{color:var(--muted);font-size:16px;margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font:500 12px var(--mono);background:var(--accent-soft);color:var(--accent);padding:3px 8px;border-radius:3px}
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;min-width:0}
+.note{font:500 12px/1.5 var(--mono);color:var(--warn);border:1px dashed var(--warn);padding:8px 10px;border-radius:4px;margin:0 0 16px}
+.ctrl{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.ctrl button{font:500 13px var(--mono);border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:6px 12px;border-radius:4px;cursor:pointer}
+.ctrl button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.chart{overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:460px;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font:500 12px var(--mono);color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:3px;margin-right:6px;vertical-align:middle}
+.read{margin:14px 0 0;font-size:16px;color:var(--muted)}
+.read b{color:var(--fg)}
+.sub{display:grid;grid-template-columns:1fr;gap:24px;margin-top:26px}
+.mat{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:440px;font:500 13px var(--mono);font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;color:var(--muted)}
+th{color:var(--muted);font-weight:500}
+td.hot{color:var(--bg);font-weight:600}
+.job{display:grid;grid-template-columns:150px 1fr;gap:6px 24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.job:first-of-type{padding-top:4px}
+.when{font:500 13px/1.5 var(--mono);color:var(--muted)}
+.job ul{margin:8px 0 0;padding-left:1.1em}
+.job li{margin-bottom:6px;font-size:16px}
+.who{color:var(--muted);font-size:15px;margin:0}
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.skills{display:grid;grid-template-columns:150px 1fr;gap:10px 24px;font-size:16px}
+.skills dt{font:500 13px var(--mono);color:var(--muted);padding-top:2px}
+.skills dd{margin:0}
+footer{margin-top:56px;padding-top:16px;border-top:2px solid var(--fg);font:500 13px var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:620px){.job,.skills{grid-template-columns:1fr}.job .when{margin-bottom:-2px}.demo{padding:14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <span class="status"><span class="vi">Đang tìm việc mới</span><span class="en">Open to new roles</span></span>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="b-vi" type="button" aria-pressed="true">VI</button>
+      <button id="b-en" type="button" aria-pressed="false">EN</button>
+    </div>
+  </div>
+
+  <h1>Nguyễn Phương Đan</h1>
+  <p class="role"><span class="vi">Chuyên viên phân tích kinh doanh và danh mục tín dụng · Ngân hàng bán lẻ</span><span class="en">Business &amp; Credit Portfolio Analyst · Retail Banking</span></p>
+  <p class="lead">
+    <span class="vi">3 năm làm việc tại OCB, Eximbank và Antsomi. Tôi phân tích chất lượng danh mục cho vay (NPL, roll rate, vintage, thanh khoản tài sản đảm bảo) và dựng báo cáo, dashboard để ban lãnh đạo nhìn thấy tình hình mà quyết định.</span>
+    <span class="en">Three years across OCB, Eximbank and Antsomi. I analyze loan portfolio quality (NPL, roll rate, vintage, collateral liquidity) and build the reports and dashboards that let management see the situation and decide.</span>
+  </p>
+  <div class="contact">
+    <a href="https://www.linkedin.com/in/nguyen-phuong-dan/" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/dannp122" rel="noopener">GitHub</a>
+    <span>pdan860@gmail.com</span>
+    <span>TP. Hồ Chí Minh</span>
+  </div>
+
+  <h2><span class="vi">Tôi làm gì</span><span class="en">What I do</span></h2>
+  <div class="areas">
+    <div class="area">
+      <h3><span class="vi">Chất lượng danh mục tín dụng</span><span class="en">Credit portfolio quality</span></h3>
+      <p><span class="vi">Theo dõi diễn biến nợ, dịch chuyển nhóm nợ và chất lượng khoản vay theo thời điểm giải ngân hoặc theo sản phẩm.</span><span class="en">Tracking delinquency, bucket migration and loan quality by disbursement period or product.</span></p>
+      <div class="tags"><span class="tag">NPL</span><span class="tag">Roll rate</span><span class="tag">Vintage / MOB</span><span class="tag">Collateral liquidity</span></div>
+    </div>
+    <div class="area">
+      <h3><span class="vi">Báo cáo quản trị</span><span class="en">Management reporting</span></h3>
+      <p><span class="vi">Báo cáo ngày, tháng và dashboard cho lãnh đạo; tự động hóa để báo cáo chỉ cần refresh.</span><span class="en">Daily and monthly reports and leadership dashboards, automated so a refresh is all they need.</span></p>
+      <div class="tags"><span class="tag">SQL</span><span class="tag">Power Query</span><span class="tag">Excel</span><span class="tag">Power BI</span></div>
+    </div>
+    <div class="area">
+      <h3><span class="vi">Phân tích khách hàng</span><span class="en">Customer analytics</span></h3>
+      <p><span class="vi">Dashboard, RFM, giỏ hàng, A/B test cho khách hàng bán lẻ và thương mại điện tử.</span><span class="en">Dashboards, RFM, market basket and A/B tests for retail and e-commerce clients.</span></p>
+      <div class="tags"><span class="tag">RFM</span><span class="tag">A/B testing</span><span class="tag">Looker Studio</span></div>
+    </div>
+  </div>
+
+  <h2><span class="vi">Minh họa phương pháp</span><span class="en">Method demo</span></h2>
+  <div class="demo">
+    <p class="note"><span class="vi">DỮ LIỆU GIẢ LẬP. Số liệu dưới đây do tôi tự tạo để minh họa cách đọc vintage và roll rate. Không phải dữ liệu của bất kỳ ngân hàng nào.</span><span class="en">SYNTHETIC DATA. These figures are generated to show how I read vintage and roll rate. They are not from any bank.</span></p>
+    <h3><span class="vi">Vintage: nợ xấu theo tháng tồn tại (MOB)</span><span class="en">Vintage: NPL by month on book (MOB)</span></h3>
+    <div class="ctrl" id="cohortCtl" role="group" aria-label="Product"></div>
+    <div class="chart"><svg id="vintage" viewBox="0 0 640 300" role="img" aria-label="Vintage chart"></svg></div>
+    <div class="legend" id="legend"></div>
+    <p class="read" id="vread"></p>
+
+    <div class="sub">
+      <div>
+        <h3><span class="vi">Roll rate: tỷ lệ dịch chuyển giữa các nhóm nợ</span><span class="en">Roll rate: movement between delinquency buckets</span></h3>
+        <div class="mat"><table id="roll"></table></div>
+        <p class="read" id="rread"></p>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="vi">Kinh nghiệm</span><span class="en">Experience</span></h2>
+  <div class="job">
+    <div class="when">T4/2026 – nay<br><span class="vi">Hiện tại</span><span class="en">Present</span></div>
+    <div>
+      <h3>OCB</h3>
+      <p class="who"><span class="vi">Chuyên viên Cao cấp Sản phẩm Cho vay Tiêu dùng; Chuyên viên Cao cấp Phân tích Kế hoạch và Kinh doanh</span><span class="en">Senior Specialist, Consumer Lending Product; Senior Specialist, Business Planning and Analysis</span></p>
+      <ul>
+        <li><span class="vi">Báo cáo ngày, tuần, tháng và phân tích đa chiều theo nhóm sản phẩm: dư nợ, giải ngân, NPL, lãi suất bình quân, FTP, NIM, TOI.</span><span class="en">Daily, weekly and monthly reports and multi-dimension analysis by product group: outstanding, disbursement, NPL, average rate, FTP, NIM, TOI.</span></li>
+        <li><span class="vi">Phân tích vintage / MOB theo sản phẩm tín dụng để xác định phân khúc nợ xấu cao và MOB xuất hiện đỉnh nợ xấu.</span><span class="en">Vintage / MOB analysis by credit product to find high-NPL segments and the MOB where NPL peaks.</span></li>
+        <li><span class="vi">Theo dõi giải ngân chính sách mới so với hạn mức được duyệt, cảnh báo chương trình sắp vượt hạn mức.</span><span class="en">Tracking disbursement under new policies against approved limits and flagging programs close to the limit.</span></li>
+        <li><span class="vi">Mảng xử lý nợ: tổng hợp dữ liệu và xây dựng dashboard để ban lãnh đạo và đối tác có chung một bộ số liệu khi chọn phương án; tham gia các chương trình bán tài sản cùng đối tác proptech và công ty chứng khoán.</span><span class="en">Debt resolution: consolidated data and built dashboards so management and partners work from one set of numbers when choosing a resolution plan; took part in asset-sale programs with a proptech partner and a securities firm.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="job">
+    <div class="when">T3/2025 – T4/2026</div>
+    <div>
+      <h3>Eximbank</h3>
+      <p class="who"><span class="vi">Chuyên viên Phân tích Kinh doanh, Phòng Chiến lược Bán lẻ</span><span class="en">Business Analyst, Retail Strategy</span></p>
+      <ul>
+        <li><span class="vi">Tự động hóa một mình hai báo cáo cho hơn 200 chi nhánh; thời gian thực hiện giảm từ khoảng nửa ngày xuống khoảng 10 phút.</span><span class="en">Sole owner of two reports automated for 200+ branches; preparation time down from about half a day to about 10 minutes.</span></li>
+        <li><span class="vi">Đóng góp chính ở mảng dữ liệu và phân tích của dự án giảm nợ xấu: roll rate, vintage, bức tranh NPL cho lãnh đạo.</span><span class="en">Main contributor on the data and analysis side of the NPL reduction project: roll rate, vintage, and the NPL picture for leadership.</span></li>
+        <li><span class="vi">Chuẩn hóa dữ liệu tài sản đảm bảo và phân tích thanh khoản theo khu vực, địa hình để hỗ trợ đánh giá rủi ro cho vay.</span><span class="en">Standardized collateral data and analyzed liquidity by region and terrain to support lending risk assessment.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="job">
+    <div class="when">T10/2023 – T3/2025</div>
+    <div>
+      <h3>Antsomi</h3>
+      <p class="who"><span class="vi">Chuyên viên Phân tích Dữ liệu</span><span class="en">Data Analyst</span></p>
+      <ul>
+        <li><span class="vi">Dashboard và báo cáo cho khách hàng tại Việt Nam, Philippines, Malaysia: hiệu quả kinh doanh, website, giỏ hàng, RFM.</span><span class="en">Dashboards and reports for clients in Vietnam, the Philippines and Malaysia: business performance, website metrics, market basket, RFM.</span></li>
+        <li><span class="vi">Phối hợp kỹ sư dữ liệu kiểm tra ETL bằng SQL; tham gia chiến dịch voucher cho một chuỗi nhà hàng đạt hơn 80% ROI cho đối tác.</span><span class="en">Worked with data engineers to check ETL in SQL; took part in a restaurant-chain voucher campaign that returned over 80% ROI for the partner.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><span class="vi">Dự án</span><span class="en">Projects</span></h2>
+  <div class="proj">
+    <div class="area">
+      <h3>Cohort Retention Analysis</h3>
+      <p><span class="vi">Logic cohort retention và dashboard tương tác bằng SQL và Power BI; xác định mô hình khách hàng rời bỏ và đề xuất cải tiến giai đoạn tiếp nhận.</span><span class="en">Cohort retention logic and an interactive dashboard in SQL and Power BI; finds churn patterns and proposes onboarding improvements.</span></p>
+      <p style="margin-top:12px"><a href="https://dannp122.github.io/Cohort-Retention-Project/" rel="noopener"><span class="vi">Xem dự án</span><span class="en">View project</span></a></p>
+    </div>
+    <div class="area">
+      <h3><span class="vi">Vintage và roll rate (trên trang này)</span><span class="en">Vintage and roll rate (on this page)</span></h3>
+      <p><span class="vi">Bản minh họa bằng dữ liệu giả lập ở phần trên. Dự án thực tế tại ngân hàng chứa dữ liệu mật nên tôi không đưa lên đây.</span><span class="en">The synthetic demo above. Work done at banks involves confidential data, so it is not shown here.</span></p>
+    </div>
+  </div>
+
+  <h2><span class="vi">Kỹ năng</span><span class="en">Skills</span></h2>
+  <dl class="skills">
+    <dt><span class="vi">Tín dụng</span><span class="en">Credit</span></dt><dd>NPL, roll rate, vintage / MOB, <span class="vi">thanh khoản tài sản đảm bảo, chỉ số cho vay bán lẻ</span><span class="en">collateral liquidity, retail lending metrics</span></dd>
+    <dt><span class="vi">Dữ liệu</span><span class="en">Data</span></dt><dd>SQL, Power Query, <span class="vi">Excel nâng cao</span><span class="en">advanced Excel</span>, <span class="vi">Python cơ bản</span><span class="en">basic Python</span></dd>
+    <dt>BI</dt><dd>Power BI, Looker Studio</dd>
+    <dt><span class="vi">Học vấn</span><span class="en">Education</span></dt><dd><span class="vi">Cử nhân Tài chính – Ngân hàng, Đại học Mở TP.HCM (2020 – 2024), GPA 3.1/4.0</span><span class="en">B.A. Finance and Banking, Ho Chi Minh City Open University (2020 – 2024), GPA 3.1/4.0</span></dd>
+  </dl>
+
+  <footer>
+    <span>pdan860@gmail.com</span>
+    <span><span class="vi">Cập nhật 10/2026</span><span class="en">Updated Oct 2026</span></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var L='vi';
+  try{var s=localStorage.getItem('pf-lang'); if(s==='en'||s==='vi')L=s;}catch(e){}
+  var T={
+    vi:{prod:['Tiêu dùng','Thế chấp','SXKD'],x:'Tháng tồn tại (MOB)',y:'Nợ xấu / dư nợ ban đầu',
+        co:['Giải ngân Q1','Giải ngân Q2','Giải ngân Q3','Giải ngân Q4'],
+        vread:function(p,pk,m){return 'Sản phẩm <b>'+p+'</b>: nợ xấu của nhóm giải ngân sớm nhất đạt khoảng <b>'+pk.toFixed(1)+'%</b> quanh <b>MOB '+m+'</b>. Nhóm giải ngân sau có đường cong cao hơn ở cùng MOB là tín hiệu chất lượng thẩm định đi xuống.';},
+        b:['Hiện hành','1–29 ngày','30–59','60–89','90+ (NPL)'],from:'Từ nhóm',to:'Sang nhóm',
+        rread:'Đọc theo hàng: trong 100 khoản đang ở nhóm 30–59 ngày, khoảng <b>38</b> chuyển sang 60–89 ngày vào tháng sau. Hàng càng đậm ở các cột bên phải thì nợ càng chảy nhanh về nhóm xấu.'},
+    en:{prod:['Consumer','Mortgage','Business'],x:'Month on book (MOB)',y:'NPL / original balance',
+        co:['Q1 disbursed','Q2 disbursed','Q3 disbursed','Q4 disbursed'],
+        vread:function(p,pk,m){return '<b>'+p+'</b>: the earliest cohort reaches about <b>'+pk.toFixed(1)+'%</b> NPL around <b>MOB '+m+'</b>. A later cohort sitting higher at the same MOB signals weaker underwriting.';},
+        b:['Current','1–29 DPD','30–59','60–89','90+ (NPL)'],from:'From bucket',to:'To bucket',
+        rread:'Read each row: of 100 loans in the 30–59 bucket, about <b>38</b> roll to 60–89 next month. Darker cells toward the right mean debt is flowing faster into the bad buckets.'}
+  };
+  // seeded generator so the demo is stable
+  function rng(seed){return function(){seed=(seed*1664525+1013904223)%4294967296;return seed/4294967296;};}
+  var P=[{peak:[3.4,3.9,4.6,5.2],tau:9,pm:15},{peak:[1.6,1.8,2.1,2.3],tau:14,pm:24},{peak:[2.8,3.4,3.9,4.7],tau:11,pm:18}];
+  var ages=[24,18,12,6];
+  var colors=['var(--c1)','var(--c2)','var(--c3)','var(--c4)'];
+  function series(pi){var r=rng(7+pi*13),out=[];
+    for(var c=0;c<4;c++){var pts=[],p=P[pi];
+      for(var m=0;m<=ages[c];m++){var v=p.peak[c]*(1-Math.exp(-m/p.tau)); if(m>p.pm+6) v*=0.985; v+= (r()-.5)*0.08*p.peak[c]; pts.push([m,Math.max(0,v)]);}
+      out.push(pts);} return out;}
+  var cur=0;
+  function esc(n){return n;}
+  function drawV(){
+    var t=T[L], S=series(cur), svg=document.getElementById('vintage');
+    var W=640,H=300,l=52,r=14,tp=14,b=44, maxY=Math.ceil(Math.max.apply(null,P[cur].peak)*1.15), maxX=24;
+    var sx=function(x){return l+(W-l-r)*x/maxX}, sy=function(y){return H-b-(H-b-tp)*y/maxY};
+    var h='';
+    var step=maxY<=3?0.5:1;
+    for(var y=0;y<=maxY+1e-9;y+=step){h+='<line x1="'+l+'" x2="'+(W-r)+'" y1="'+sy(y)+'" y2="'+sy(y)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(l-8)+'" y="'+(sy(y)+4)+'" text-anchor="end" font-size="11" font-family="JetBrains Mono,monospace" fill="var(--muted)">'+y.toFixed(step<1?1:0)+'%</text>';}
+    for(var x=0;x<=24;x+=6){h+='<text x="'+sx(x)+'" y="'+(H-b+18)+'" text-anchor="middle" font-size="11" font-family="JetBrains Mono,monospace" fill="var(--muted)">'+x+'</text>';}
+    h+='<text x="'+((l+W-r)/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="11" font-family="JetBrains Mono,monospace" fill="var(--muted)">'+t.x+'</text>';
+    h+='<text transform="translate(12 '+((tp+H-b)/2)+') rotate(-90)" text-anchor="middle" font-size="11" font-family="JetBrains Mono,monospace" fill="var(--muted)">'+t.y+'</text>';
+    for(var c=0;c<4;c++){var d=S[c].map(function(p,i){return (i?'L':'M')+sx(p[0]).toFixed(1)+' '+sy(p[1]).toFixed(1)}).join(' ');
+      h+='<path d="'+d+'" fill="none" stroke="'+colors[c]+'" stroke-width="2.4" stroke-linejoin="round"/>';
+      var e=S[c][S[c].length-1]; h+='<circle cx="'+sx(e[0])+'" cy="'+sy(e[1])+'" r="3.6" fill="'+colors[c]+'"/>';}
+    svg.innerHTML=h;
+    var lg='';for(var c=0;c<4;c++)lg+='<span><i style="background:'+colors[c]+'"></i>'+t.co[c]+'</span>';
+    document.getElementById('legend').innerHTML=lg;
+    var first=S[0], pk=Math.max.apply(null,first.map(function(p){return p[1]})), pm=first.filter(function(p){return p[1]>=pk*0.97})[0][0];
+    document.getElementById('vread').innerHTML=t.vread(t.prod[cur],pk,pm);
+  }
+  function ctl(){
+    var t=T[L], box=document.getElementById('cohortCtl'); box.innerHTML='';
+    t.prod.forEach(function(n,i){var b=document.createElement('button');b.type='button';b.id='prod'+i;b.textContent=n;b.setAttribute('aria-pressed',i===cur?'true':'false');
+      b.onclick=function(){cur=i;ctl();drawV();};box.appendChild(b);});
+  }
+  var M=[[93.5,5.5,1.0,0,0],[38,32,24,6,0],[12,18,32,38,0],[6,4,12,20,58],[0,0,0,3,97]];
+  function drawR(){
+    var t=T[L], h='<tr><th>'+t.from+' \\ '+t.to+'</th>'+t.b.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>';
+    for(var i=0;i<5;i++){h+='<tr><td>'+t.b[i]+'</td>';
+      for(var j=0;j<5;j++){var v=M[i][j],a=Math.min(1,v/100);
+        var hot=v>=25 && j>i; var st=v>0?'background:color-mix(in srgb, '+(j>i?'var(--warn)':'var(--accent)')+' '+Math.round(8+a*80)+'%, var(--surface))':'';
+        h+='<td'+(hot?' class="hot"':'')+' style="'+st+'">'+(v?v.toFixed(v%1?1:0):'–')+'</td>';}
+      h+='</tr>';}
+    document.getElementById('roll').innerHTML=h;
+    document.getElementById('rread').innerHTML=t.rread;
+  }
+  function apply(){
+    document.documentElement.setAttribute('data-l',L); document.documentElement.lang=L;
+    document.getElementById('b-vi').setAttribute('aria-pressed',L==='vi'?'true':'false');
+    document.getElementById('b-en').setAttribute('aria-pressed',L==='en'?'true':'false');
+    ctl();drawV();drawR();
+  }
+  function set(l){L=l;try{localStorage.setItem('pf-lang',l)}catch(e){}apply();}
+  document.getElementById('b-vi').onclick=function(){set('vi')};
+  document.getElementById('b-en').onclick=function(){set('en')};
+  apply();
+})();
+</script>
